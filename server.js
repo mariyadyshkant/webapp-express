@@ -12,14 +12,12 @@ const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 // const HOST = process.env.HOST || 'localhost';
 
-app.use(cors(
-    // {
-    //     origin: 'http://localhost:3000', // Allow all origins for simplicity, adjust as needed
-    //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    //     allowedHeaders: ['Content-Type', 'Authorization'],
-    //     credentials: true // Allow credentials if needed
-    // }
-));
+app.use(cors({
+    origin: 'http://localhost:5175', // Your React app port
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 
 // chiama la funzione initialize che abbiamo creato nel file passport-config.js
 initializePassport(passport);
@@ -47,6 +45,7 @@ app.use(cors({
 app.use(express.json());
 app.use('/api/movies', movieRoutes);
 
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
@@ -57,6 +56,7 @@ app.get('/', (req, res) => {
         status: 'Server is running successfully'
     });
 });
+
 
 
 

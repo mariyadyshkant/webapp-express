@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const connection = require('./database/db.js');
+const mysql = require('mysql2');
+const connection = require('../database/connection');
 
 function initialize(passport) {
     // strategia passport per il login
